@@ -93,3 +93,20 @@ export const getGeneratedQuiz = async (text, noQuiz) => {
 }
 
 
+export const getPdfGeneratedQuiz = async (file, userCon1, userCon2) => {
+    try {
+        const res = await axios.post(`${server}/quiz/pdfgenerate`, { pdf: file, userConcerns1: userCon1, userConcerns2: userCon2 }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            'withCredentials': true
+        })
+
+        return res.data
+
+    } catch (error) {
+        console.log(error.response.data.message);
+    }
+}
+
+
